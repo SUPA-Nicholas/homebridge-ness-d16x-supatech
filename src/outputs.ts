@@ -50,10 +50,10 @@ export class NessOutputsHelper {
 		// configure output services
 		for (const output of this.outputs) {
 			if (1 <= output.id && output.id <= NOUTPUTS) {
-				const service = this.findRestored(this.hap.Service.Outlet.UUID, output.id)
-					|| this.accessory.addService(this.hap.Service.Outlet, output.label, output.id.toString());
+				const service = this.findRestored(this.hap.Service.LockMechanism.UUID, output.id)
+					|| this.accessory.addService(this.hap.Service.LockMechanism, output.label, output.id.toString());
 				service.displayName = output.label
-				service.getCharacteristic(this.hap.Characteristic.On)
+				service.getCharacteristic(this.hap.Characteristic.LockTargetState)
 					.on('set', this.setOn.bind(this, output.id, service))
 				this.addConfigured(service)
 				this.log.info("Configured: Output: " + output.id + ": " + output.label)
@@ -99,7 +99,7 @@ export class NessOutputsHelper {
 		if (1 <= id && id <= MAXOUTPUTS) {
 			this.status[id] = state
 			const service = this.findConfigured(id)
-			if (service) service.updateCharacteristic(this.hap.Characteristic.On, state)
+			if (service) service.updateCharacteristic(this.hap.Characteristic.LockCurrentState, state)
 		}
 	}
 
@@ -126,7 +126,12 @@ export class NessOutputsHelper {
 	private setOn(id: number, service: Service, value: CharacteristicValue, callback: CharacteristicSetCallback) {
 		if (this.verboseLog)
 			this.log.info('Set Output On: ' + service.subtype + ": value: " + value);
-		this.nessClient.aux(id, 0 < value)
+		if (value === 0) {
+			this.nessClient.aux(id, true)
+		} 
+		else {
+			this.nessClient.aux(id, false)
+		}
 		callback(NO_ERRORS);
 	}
 

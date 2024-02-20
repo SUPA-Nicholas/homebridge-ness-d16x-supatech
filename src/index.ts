@@ -19,7 +19,7 @@ import { NessClient } from 'nessclient'
 import { NessPanelHelper } from './panel'
 
 export const PLATFORM_NAME = 'NessD16x'
-export const PLUGIN_NAME = 'homebridge-ness-d16x' // Plugin name from package.json
+export const PLUGIN_NAME = 'homebridge-ness-d16x-supatech' // Plugin name from package.json
 export enum ArmingMode {
   AWAY = 'AWAY',
   HOME = 'HOME',

@@ -1,7 +1,7 @@
 {
-  "name": "homebridge-ness-d16x",
+  "name": "homebridge-ness-d16x-supatech",
   "description": "Homebridge plugin for Ness D8x / D16x",
-  "version": "1.0.0",
+  "version": "1.1.5",
   "license": "MIT",
   "engines": {
     "node": ">=18.16.0",
@@ -23,10 +23,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/anekol/homebridge-ness-d16x.git"
+    "url": "git+https://github.com/SUPA-Nicholas/homebridge-ness-d16x-supatech.git"
   },
   "bugs": {
-    "url": "https://github.com/anekol/homebridge-ness-d16x/issues"
+    "url": "https://github.com/SUPA-Nicholas/homebridge-ness-d16x-supatech/issues"
   },
   "dependencies": {
     "nessclient": "2.2.0"
